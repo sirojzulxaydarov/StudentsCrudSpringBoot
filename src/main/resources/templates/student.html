@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+
+<h1 class="text-center bg-dark text-white">Student</h1>
+
+<a class="btn-dark" href="student/create">Add student</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Age</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student:${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.firstName}"></td>
+        <td th:text="${student.lastName}"></td>
+        <td th:text="${student.age}"></td>
+        <td>
+            <div class="btn-group">
+                <form action="/student/update">
+                    <input type="hidden" name="id" th:value="${student.id}">
+                    <button class="btn-info">edit</button>
+                </form>
+                <form action="/student/delete" method="post">
+                    <input type="hidden" name="id" th:value="${student.id}">
+                    <button class="btn-danger">delete</button>
+                </form>
+            </div>
+        </td>
+
+    </tr>
+
+    </tbody>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+<div class="col-6 offset-3">
+    <form th:action="${student==null?'/student':'/student/update/'+student.id}" method="post">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <span th:if="${student}">Update student</span>
+                <span th:unless="${student}">Create student</span>
+            </div>
+            <div class="card-body">
+                <input th:value="${student!=null ?student.firstName:''}" placeholder="FirstName"
+                       class="form-control m-2" type="text" name="firstName">
+                <input th:value="${student!=null ?student.lastName:''}" placeholder="LastName" class="form-control m-2"
+                       type="text" name="lastName">
+                <input th:value="${student!=null ?student.age:''}" placeholder="Age" class="form-control m-2"
+                       type="number" name="age">
+            </div>
+            <div class="card-footer">
+                <button th:unless="${student}" class="btn btn-dark">save</button>
+                <button th:if="${student}" class="btn btn-info">update</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
